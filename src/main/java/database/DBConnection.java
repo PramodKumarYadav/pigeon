@@ -12,11 +12,11 @@ import java.sql.SQLException;
 import static org.jsoup.helper.Validate.fail;
 
 @Slf4j
-/*
-  Generic rule to follow: The class calling the connection must close the connection.
-  (object -> dbConnection.getConnection() will give connection to close).
-  When using a try-with-resources statement, the connection is automatically closed
-  https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html
+/**
+ Generic rule to follow: The class calling the connection must close the connection.
+ (object -> dbConnection.getConnection() will give connection to close).
+ When using a try-with-resources statement, the connection is automatically closed
+ https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html
  */
 public class DBConnection implements AutoCloseable {
     private static final Config config = EnvFactory.getInstance().getConfig();
