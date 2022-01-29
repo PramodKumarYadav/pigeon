@@ -63,8 +63,8 @@ public class CapabilitiesFactory {
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.setAcceptInsecureCerts(acceptInsecureCertsFlag);
         chromeOptions.setHeadless(HEADLESS);
-//        chromeOptions.addArguments("--disable-dev-shm-usage"); // overcome limited resource problems
-        chromeOptions.addArguments("--no-sandbox"); // overcome limited resource problems and a must-have step to run tests in docker pipeline
+        chromeOptions.addArguments("--disable-dev-shm-usage"); // overcome limited resource problems and a must-have step to run tests in docker pipeline or docker selenium grid
+        chromeOptions.addArguments("--no-sandbox"); // overcome limited resource problems and a should-have step to run tests in docker pipeline or docker selenium grid
         chromeOptions.addArguments("--window-size=1920,1080");
         chromeOptions.addArguments("start-maximized");
         chromeOptions.setPageLoadStrategy(PageLoadStrategy.NORMAL);
