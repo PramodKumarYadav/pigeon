@@ -1,5 +1,6 @@
 # pigeon
-Pigeon is our powerful, feature rich, frontend test framework for automating FedEx browser application home page.
+Pigeon is a powerful, feature rich, frontend test automation framework in Selenium, Docker, Elastic and Kibana.
+Application under test is FedEx browser application home page.
 
 `Note: If you want to see badges in action, then I have to make this repo public! 
 It will then look like below snapshot.`
