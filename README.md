@@ -52,5 +52,8 @@ Two exceptions that I took liberty to deviate from the given assignment (and wit
   - Reason: With time the application will grow in size and complexity. The framework design should allow for easy
     scalability without affecting existing entitites. We achieve this by using more `composition` than `inheritance` in 
     our design. Also by keeping a clear seperation between code, config, data and test intentions.
+- [ ] **multiple parallel execution modes**.
+    - Reason: To scale up or down execution based on the infrastructure availability.
+    
 
 ## Getting started
