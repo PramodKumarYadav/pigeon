@@ -1,9 +1,10 @@
 # pigeon
 Pigeon is our powerful, feature rich, frontend test framework for automating FedEx browser application home page.
 
-[![GitHub build Status](https://img.shields.io/github/workflow/status/pramodkumaryadav/pigeon/Java%20CI%20with%20Maven)](https://github.com/PramodKumarYadav/pigeon/actions)
-![GitHub contributors](https://img.shields.io/github/contributors/pramodkumaryadav/pigeon)
-![GitHub last commit](https://img.shields.io/github/last-commit/pramodkumaryadav/pigeon)
+`Note: If you want to see badges in action, then I have to make this repo public! 
+It will then look like below snapshot.`
+
+![badges](./images/badges.png)
 
 ## Toolset
 Key tools used in pigeon are:
