@@ -70,3 +70,39 @@ Two exceptions that I took liberty to deviate from the given assignment (and wit
     - `mvn clean -Dgroups=smokeTest test`
 - To exclude any flaky or slow tests, you can run as: 
     - `mvn clean -DexcludedGroups="slow, flaky" test`
+
+## Monitoring (using Elastic and Kibana)
+- Go to choices.conf file and set MONITORING_INFRA_READY_ON_ELASTIC_KIBANA = "true"
+- Start Docker Desktop (if on Windows or linux)
+- Open a terminal (as admin)
+- [Increase the vm map count as explained here](https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html#_windows_with_docker_desktop_wsl_2_backend)
+- CD to this project root `cd D:/pigeon`
+- Run `docker compose -f .\docker-compose-monitoring.yml up` to start all elastic and kibana containers. 
+- Go to elastic search home page `http://localhost:9200/` 
+- You should see something like this.
+```
+{
+  "name" : "es01",
+  "cluster_name" : "es-docker-cluster",
+  "cluster_uuid" : "M5wKWldOTXC_Qf6Zqx_5Qg",
+  "version" : {
+    "number" : "7.16.3",
+    "build_flavor" : "default",
+    "build_type" : "docker",
+    "build_hash" : "4e6e4eab2297e949ec994e688dad46290d018022",
+    "build_date" : "2022-01-06T23:43:02.825887787Z",
+    "build_snapshot" : false,
+    "lucene_version" : "8.10.1",
+    "minimum_wire_compatibility_version" : "6.8.0",
+    "minimum_index_compatibility_version" : "6.0.0-beta1"
+  },
+  "tagline" : "You Know, for Search"
+}
+```
+- Go to kibana home page `http://localhost:5601/app/home#/`
+- You should see Kibana dashboard.
+- Run some tests from this project (pigeon) to create a `testrun` index and publish our test runs data on Elastic Search. 
+- You can now add the elastic index `testrun` in Kibana and should be able to create real time dashboards.
+- A video showing how it looks like in actions is as below. 
+- Run `docker compose -f .\docker-compose-monitoring.yml down` to kill all elastic and kibana containers. 
+- Go to choices.conf file and set MONITORING_INFRA_READY_ON_ELASTIC_KIBANA = "false" again to avoid failing your tests.
