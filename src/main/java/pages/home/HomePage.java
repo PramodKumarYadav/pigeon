@@ -23,7 +23,6 @@ public class HomePage {
     @FindBy(css = "div[class='fxg-alert__text fxg-alert__text-spacer'] > p")
     private WebElement fedExAlert;
 
-
     public HomePage navigateToHomePageURL() {
         pageActions.getPageWithRetry(HOME_PAGE_URL, By.cssSelector("button[id='btnSingleTrack']"));
         return this;

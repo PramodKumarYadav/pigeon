@@ -62,3 +62,11 @@ Two exceptions that I took liberty to deviate from the given assignment (and wit
   - Reason: To allow logging at multiple levels (debug, warn, err) for multiple needs (debug, execution)
 
 ## Getting started
+
+## To run tests
+
+### From maven 
+- To include any specific tests, (say to run only smoke tests in CI), run as:
+    - `mvn clean -Dgroups=smokeTest test`
+- To exclude any flaky or slow tests, you can run as: 
+    - `mvn clean -DexcludedGroups="slow, flaky" test`
