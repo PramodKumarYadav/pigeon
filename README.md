@@ -7,7 +7,7 @@ Pigeon is our powerful, feature rich, frontend test framework for automating Fed
 
 ## Toolset
 Key tools used in pigeon are:
-- [ ] **ElasticSearch and Kibana** (for real time test monitoring and reporting)
+- [x] **ElasticSearch and Kibana** (for real time test monitoring and reporting)
 - [x] **Github actions** (for continuous integration)
 - [ ] **Docker** (for dockerizing the project and running it in a docker selenium grid)
 - [x] **Selenium**  (library for browser automation)
