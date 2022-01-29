@@ -1,5 +1,8 @@
 package testextensions;
 
+import choices.Host;
+import com.typesafe.config.Config;
+import config.EnvFactory;
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
@@ -13,7 +16,16 @@ import java.util.Map;
 public class PublishTestResults {
     private static final String TEST_RUN = String.format("RUN-%s", System.currentTimeMillis());
 
-    public static Response toElastic() {
+    private static Config config = EnvFactory.getInstance().getConfig();
+    private static final String MONITORING_INFRA_READY_ON_ELASTIC_KIBANA = config.getString("MONITORING_INFRA_READY_ON_ELASTIC_KIBANA");
+
+    public static void toElastic() {
+        if(MONITORING_INFRA_READY_ON_ELASTIC_KIBANA.equalsIgnoreCase("true")){
+            publishResultsOnElastic();
+        }
+    }
+
+    private static Response publishResultsOnElastic() {
         return RestAssured
                 .given()
                 .spec(getElasticBasicSpecification())
@@ -36,7 +48,7 @@ public class PublishTestResults {
         return testResult;
     }
 
-    public static RequestSpecification getElasticBasicSpecification() {
+    private static RequestSpecification getElasticBasicSpecification() {
         return new RequestSpecBuilder()
                 .setAccept(ContentType.JSON)
                 .setContentType(ContentType.JSON)
