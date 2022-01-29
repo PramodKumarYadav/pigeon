@@ -126,6 +126,12 @@
             <artifactId>ashot</artifactId>
             <version>${ashot.version}</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/io.rest-assured/rest-assured -->
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>rest-assured</artifactId>
+            <version>4.5.0</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
