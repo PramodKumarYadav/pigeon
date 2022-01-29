@@ -1,32 +1,29 @@
 package pages.home;
 
-import actions.PageActions;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInfo;
-import org.openqa.selenium.WebDriver;
-import factories.DriverFactory;
+import org.junit.jupiter.api.extension.ExtendWith;
+import testextensions.TestExecutionLifecycle;
+import testextensions.TestSetup;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class TestFedExAlert {
-    private WebDriver driver = DriverFactory.getDriver();
-
-    private HomePage homePage = new HomePage(driver);
-    private FedExAlert fedExAlert = new FedExAlert(driver);
+@Tag("regression")
+@ExtendWith(TestExecutionLifecycle.class)
+public class TestFedExAlert extends TestSetup {
+    private HomePage homePage;
+    private FedExAlert fedExAlert;
 
     @BeforeEach
-    void setUp() {
-        DriverFactory.setDriverTimeouts(driver);
+    void initialize() {
+        homePage = new HomePage(driver);
+        fedExAlert = new FedExAlert(driver);
+
         homePage.navigateToHomePageURL();
     }
 
-    @AfterEach
-    void tearDown(TestInfo testInfo) {
-        PageActions.closeDriver(driver);
-    }
-
+    @Tag("smokeTest")
     @Test
     void assertThatFedExCovidAlertTextIsCorrect() {
         String alertText = "High volume of shipments and COVID 19 restrictions may cause delivery delays. " +

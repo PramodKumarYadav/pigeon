@@ -1,33 +1,37 @@
 package pages.home;
 
-import actions.PageActions;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInfo;
-import org.openqa.selenium.WebDriver;
-import factories.DriverFactory;
+import org.junit.jupiter.api.extension.ExtendWith;
+import testextensions.TestExecutionLifecycle;
+import testextensions.TestSetup;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class TestHomePage {
-    private WebDriver driver = DriverFactory.getDriver();
-
-    private HomePage homePage = new HomePage(driver);
+@Tag("regression")
+@ExtendWith(TestExecutionLifecycle.class)
+public class TestHomePage extends TestSetup {
+    private HomePage homePage;
 
     @BeforeEach
-    void setUp() {
-        DriverFactory.setDriverTimeouts(driver);
+    void initialize() {
+        homePage = new HomePage(driver);
         homePage.navigateToHomePageURL();
     }
 
-    @AfterEach
-    void tearDown(TestInfo testInfo) {
-        PageActions.closeDriver(driver);
-    }
-
+    @Tag("smokeTest")
     @Test
     void assertThatHomePageTitleIsCorrect() {
+        String homePageTitle = "Express Delivery, Courier & Shipping Services | FedEx United Kingdom";
+        assertEquals(homePageTitle, homePage.getHomePageTitle());
+    }
+
+    @Tag("flaky")
+    @DisplayName("A test to demonstrate that tags can be used to filter flaky, slow or smokeTests or regression tests.")
+    @Test
+    void aTestToDemonstrateHowToMarkFlakyOrSlowTests() {
         String homePageTitle = "Express Delivery, Courier & Shipping Services | FedEx United Kingdom";
         assertEquals(homePageTitle, homePage.getHomePageTitle());
     }
