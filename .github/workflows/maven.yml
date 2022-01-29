@@ -26,5 +26,5 @@ jobs:
       run: |
         chmod +x ./install/install-chrome.sh
          ./install/install-chrome.sh
-    - name: Build with Maven
+    - name: Build and Test with Maven
       run: mvn clean test -DHEADLESS=true
