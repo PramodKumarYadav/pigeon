@@ -7,7 +7,7 @@ Pigeon is our powerful, feature rich, frontend test framework for automating Fed
 
 ## Toolset
 Key tools used in pigeon are:
-- [ ] **ElasticSearch and Kibana** (for real time test monitoring and reporting)
+- [x] **ElasticSearch and Kibana** (for real time test monitoring and reporting)
 - [x] **Github actions** (for continuous integration)
 - [ ] **Docker** (for dockerizing the project and running it in a docker selenium grid)
 - [x] **Selenium**  (library for browser automation)
@@ -19,6 +19,8 @@ Key tools used in pigeon are:
 - [x] **Surefire Site plugin** (for secondary html reports in CI)
 - [x] **Github** (for version control)
 - [ ] **Faker library** (for generating random test data for different locales - germany, france, netherlands, english)
+- [ ] **Remote execution on selenium docker grid** (although the performance of selenium grid is not good but this 
+  serves as a poc for remote execution)
 
 ### Exceptions
 Two exceptions that I took liberty to deviate from the given assignment (and with respective reasons) are:
