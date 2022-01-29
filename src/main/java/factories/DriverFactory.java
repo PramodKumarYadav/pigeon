@@ -68,13 +68,14 @@ public class DriverFactory {
         }
     }
 
+    /** Chrome, firefox and edge; are the only 3 options available under docker.selenium.grid */
     private static WebDriver getRemoteWebDriver() {
         switch (BROWSER) {
             case CHROME:
                 // fall - through. Same method for all browsers.
             case FIREFOX:
                 // fall - through. Same method for all browsers.
-            case OPERA:
+            case EDGE:
                 return new RemoteWebDriver(URLFactory.getHostURL(HOST), CapabilitiesFactory.getCapabilities(BROWSER));
             default:
                 throw new IllegalStateException(String.format("%s is not a valid browser choice. Pick your browser from %s.", BROWSER, java.util.Arrays.asList(BROWSER.values())));
