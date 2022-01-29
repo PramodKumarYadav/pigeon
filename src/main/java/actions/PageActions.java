@@ -39,7 +39,7 @@ import static org.jsoup.helper.Validate.fail;
 public class PageActions {
     private WebDriver driver;
 
-    private static WebDriverWait shotWait;
+    private static WebDriverWait shortWait;
     private static WebDriverWait longWait;
     private static WebDriverWait extraLongWait;
 
@@ -48,7 +48,7 @@ public class PageActions {
 
     public PageActions(WebDriver driver) {
         this.driver = driver;
-        shotWait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        shortWait = new WebDriverWait(driver, Duration.ofSeconds(10));
         longWait = new WebDriverWait(driver, Duration.ofSeconds(30));
         extraLongWait = new WebDriverWait(driver, Duration.ofSeconds(60));
     }
@@ -149,19 +149,19 @@ public class PageActions {
 
     // Below step is required for list items. Else the test gets flaky.
     public void waitUntilAllElementsAreDisplayed(List<WebElement> webElements) {
-        shotWait.until(ExpectedConditions.visibilityOfAllElements(webElements));
+        shortWait.until(ExpectedConditions.visibilityOfAllElements(webElements));
     }
 
     public Boolean waitUntilElementDisappears(By locator) {
-        return shotWait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
+        return shortWait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
     }
 
     public WebElement waitUntilElementIsClickable(WebElement webElement) {
-        return shotWait.until(ExpectedConditions.elementToBeClickable(webElement));
+        return shortWait.until(ExpectedConditions.elementToBeClickable(webElement));
     }
 
     public WebElement waitUntilElementIsVisible(WebElement webElement) {
-        return shotWait.until(ExpectedConditions.visibilityOf(webElement));
+        return shortWait.until(ExpectedConditions.visibilityOf(webElement));
     }
 
     public void getPageWithRetry(String pageUrl, By expectedElementLocator) {
@@ -195,19 +195,15 @@ public class PageActions {
     }
 
     public boolean isTextPresentInWebElement(WebElement webElement, String text) {
-        return shotWait.until(ExpectedConditions.textToBePresentInElement(webElement, text));
+        return shortWait.until(ExpectedConditions.textToBePresentInElement(webElement, text));
     }
 
     public boolean doesElementHaveAttributeWithValue(WebElement webElement, String attribute, String text) {
-        return shotWait.until(ExpectedConditions.attributeToBe(webElement, attribute, text));
+        return shortWait.until(ExpectedConditions.attributeToBe(webElement, attribute, text));
     }
 
     public String getTextFromElement(WebElement webElement) {
         return waitUntilElementIsVisible(webElement).getText();
-    }
-
-    public static void closeDriver(WebDriver driver) {
-        driver.close();
     }
 
     public void refreshPage() {
@@ -381,7 +377,7 @@ public class PageActions {
     }
 
     public WebElement waitForElementToBeClickable(WebElement element) {
-        return shotWait.until(ExpectedConditions.elementToBeClickable(element));
+        return shortWait.until(ExpectedConditions.elementToBeClickable(element));
     }
 //    Type this in console of chrome browser and hover to any point to get the page coordinates
 //    https://stackoverflow.com/questions/12888584/is-there-a-way-to-tell-chrome-web-debugger-to-show-the-current-mouse-position-in
