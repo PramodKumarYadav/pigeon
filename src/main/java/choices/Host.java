@@ -1,0 +1,34 @@
+package choices;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public enum Host {
+    LOCAL("local"),
+    DEVELOP("develop"),
+    STAGING("staging");
+
+    public final String label;
+
+    Host(String label) {
+        this.label = label;
+    }
+
+    private static final Map<String, Host> BY_LABEL = new HashMap<>();
+
+    static {
+        for (Host host : values()) {
+            BY_LABEL.put(host.label, host);
+        }
+    }
+
+    // To get enum name from a label (choice specified in application.conf)
+    public static Host parse(String label) {
+        if (BY_LABEL.get(label) == null) {
+            throw new IllegalStateException(String.format("%s is not a valid host env choice. Pick your host env from %s." +
+                    "Check the value of 'HOST' property in choices.conf; Or in CI, if running from continuous integration.", label, BY_LABEL.keySet()));
+        } else {
+            return BY_LABEL.get(label);
+        }
+    }
+}
