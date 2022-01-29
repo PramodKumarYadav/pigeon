@@ -1,5 +1,6 @@
 package config;
 
+import choices.AppEnv;
 import choices.Host;
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;
@@ -30,14 +31,19 @@ public class EnvFactory {
         Config baseConfig = choicesConfig.withFallback(applicationConfig);
 
         String host = baseConfig.getString("HOST");
+        String appEnv = baseConfig.getString("APP_ENV");
 
-        // assert that the host choice picked from choices is actually a valid host.
+        // assert that the host and app choice we fetched from application.conf are actually valid Host and App as specified in Host and App enum classes.
         Host.parse(host);
+        AppEnv.parse(appEnv);
 
-        /* Assumption is, if you have specified this value in host, you have also created a valid file with its
-            hostname.conf file under main -> resources folder. For inspiration; refer say file staging.conf
+        /* Assumption is, if you specified this value in host/app, you have also created a valid file with its hostname.conf/app.name file under main -> resources folder.
+            for inspiration; refer say file app.env.staging.conf (for app env)
          */
         Config hostConfig = ConfigFactory.load(host);
-        return hostConfig.withFallback(baseConfig);
+        Config appEnvConfig = ConfigFactory.load(appEnv);
+
+        Config mergedConfig = hostConfig.withFallback(baseConfig);
+        return appEnvConfig.withFallback(mergedConfig);
     }
 }
