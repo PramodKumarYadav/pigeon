@@ -20,5 +20,8 @@ public class TestSetup {
     public void postProcessing() {
         driver.close();
         log.info("tear down complete");
+
+        PublishTestResults.toElastic();
+        log.info("Published results to Elastic");
     }
 }
