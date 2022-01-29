@@ -19,6 +19,7 @@ public class TestSetup {
     @AfterEach
     public void postProcessing() {
         driver.close();
+        driver.quit();
         log.info("tear down complete");
 
         PublishTestResults.toElastic();

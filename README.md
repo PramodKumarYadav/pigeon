@@ -12,6 +12,7 @@ Key tools used in pigeon are:
 - [x] **ElasticSearch and Kibana** (for real time test monitoring and reporting)
 - [x] **Github actions** (for continuous integration)
 - [ ] **Docker** (for dockerizing the project and running it in a docker selenium grid)
+- [x] **Remote execution on docker selenium grid** (example of remote execution)
 - [x] **Selenium**  (library for browser automation)
 - [x] **Java** (as the core programming language)
 - [x] **Maven** (for dependency management)
@@ -21,8 +22,6 @@ Key tools used in pigeon are:
 - [x] **Surefire Site plugin** (for secondary html reports in CI)
 - [x] **Github** (for version control)
 - [ ] **Faker library** (for generating random test data for different locales - germany, france, netherlands, english)
-- [ ] **Remote execution on selenium docker grid** (although the performance of selenium grid is not good but this 
-  serves as a poc for remote execution)
 
 ### Exceptions
 An exception that I took liberty to deviate from the given assignment was not using **Cucumber**. 
@@ -63,13 +62,36 @@ The reasons for not usig cucumber are as below:
 
 ## Getting started
 
-## To run tests
+## To run tests on localhost
 
-### From maven 
+### via Intellij or from Maven
 - To include any specific tests, (say to run only smoke tests in CI), run as:
     - `mvn clean -Dgroups=smokeTest test`
 - To exclude any flaky or slow tests, you can run as: 
     - `mvn clean -DexcludedGroups="slow, flaky" test`
+
+## To run tests on remote (say on docker.selenium.grid)
+### via Intellij or from Maven
+- Precondition: Verify that HOST_URI="http://localhost:4444/wd/hub" is set in host.docker.selenium.grid.conf.
+- First bring up the selenium grid infrastructure. To do this:
+- Start Docker Desktop (if on Windows or linux)
+- To start Docker in Swarm mode, you need to run `docker swarm init`
+- To deploy the Grid, `docker stack deploy -c docker-compose-v3-swarm.yml grid`
+- Verify that the stack is up by `docker stack ls`.
+- Verify that the services and replicas are up by `docker service ls`.
+- [Verify docker grid sessions](http://localhost:4444/ui/index.html#/)
+  - ![selenium-grid](./images/selenium-grid.png)
+- You can run tests on only three browsers (edge, chrome or firefox). Edge and chrome tests are stable.
+    - `mvn clean -DBROWSER=edge test`
+    - `mvn clean -DBROWSER=chrome test`
+- Once done, Stop with `docker stack rm grid`
+- Verify that the stack is down by `docker stack ls`.
+- Verify that the services are down by `docker service ls`.
+- Stop swarm mode `docker swarm leave --force`
+
+### Troubleshooting. 
+- If the sessions are stuck, it is probably because the driver did not properly quit. 
+- Bring down the stack as explained above and bring up the stack again.
 
 ## Monitoring (using Elastic and Kibana)
 - Go to choices.conf file and set MONITORING_INFRA_READY_ON_ELASTIC_KIBANA = "true"

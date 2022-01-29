@@ -26,6 +26,7 @@ import config.EnvFactory;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.logging.LogType;
 import org.openqa.selenium.logging.LoggingPreferences;
@@ -54,6 +55,8 @@ public class CapabilitiesFactory {
                 return getFirefoxOptions();
             case OPERA:
                 return getOperaOptions();
+            case EDGE:
+                return getEdgeOptions();
             default:
                 throw new IllegalStateException(String.format("%s is not a valid browser choice. Pick your browser from %s.", browser, java.util.Arrays.asList(browser.values())));
         }
@@ -63,8 +66,8 @@ public class CapabilitiesFactory {
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.setAcceptInsecureCerts(acceptInsecureCertsFlag);
         chromeOptions.setHeadless(HEADLESS);
-//        chromeOptions.addArguments("--disable-dev-shm-usage"); // overcome limited resource problems
-        chromeOptions.addArguments("--no-sandbox"); // overcome limited resource problems and a must-have step to run tests in docker pipeline
+        chromeOptions.addArguments("--disable-dev-shm-usage"); // overcome limited resource problems and a must-have step to run tests in docker pipeline or docker selenium grid
+        chromeOptions.addArguments("--no-sandbox"); // overcome limited resource problems and a should-have step to run tests in docker pipeline or docker selenium grid
         chromeOptions.addArguments("--window-size=1920,1080");
         chromeOptions.addArguments("start-maximized");
         chromeOptions.setPageLoadStrategy(PageLoadStrategy.NORMAL);
@@ -91,5 +94,9 @@ public class CapabilitiesFactory {
 
     public static OperaOptions getOperaOptions() {
         return new OperaOptions();
+    }
+
+    public static EdgeOptions getEdgeOptions() {
+        return new EdgeOptions();
     }
 }
