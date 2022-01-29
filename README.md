@@ -1,6 +1,10 @@
 # pigeon
 Pigeon is our powerful, feature rich, frontend test framework for automating FedEx browser application home page.
 
+[![GitHub build Status](https://img.shields.io/github/workflow/status/pramodkumaryadav/pigeon/Java%20CI%20with%20Maven)](https://github.com/PramodKumarYadav/pigeon/actions)
+![GitHub contributors](https://img.shields.io/github/contributors/pramodkumaryadav/pigeon)
+![GitHub last commit](https://img.shields.io/github/last-commit/pramodkumaryadav/pigeon)
+
 ## Toolset
 Key tools used in pigeon are:
 - **ElasticSearch and Kibana** (for real time test monitoring and reporting)
