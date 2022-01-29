@@ -23,21 +23,17 @@ Key tools used in pigeon are:
   serves as a poc for remote execution)
 
 ### Exceptions
-Two exceptions that I took liberty to deviate from the given assignment (and with respective reasons) are:
-
-- **Avoid using Cucumber**:
-  - *Reason (efficiency)*: The maximum level of parallel execution that can be achieved in cucumber is at a feature file 
+An exception that I took liberty to deviate from the given assignment was not using **Cucumber**. 
+The reasons for not usig cucumber are as below: 
+  - **Impact on execution times**: The maximum level of parallel execution that can be achieved in cucumber is at a feature file 
     level. This limits the total execution time to tool choice rather than an infrastructure limitation. By avoiding 
-    cucumber, we can get faster build times in CI by upgrading to a powerful infrastructure - something that you cannot 
-    do if we use cucumber.
-  - *Reason (effectiveness)*: Cucumber providing a sugar syntax which comes at the cost of restricted flexibility w.r.t. 
-    how you can make the best use of object-oriented programming and underlying libraries that it uses (such as junit5). 
+    cucumber, we can get faster build times in CI by upgrading to a powerful infrastructure - something that we cannot 
+    do with cucumber, even if we have high infrastructure. Cucumbers feature-files are the slowest moving parts. However,
+    with Junit5 the slowest moving part is a test case. 
+  - **Impact on maintenance and design**: Cucumber providing a sugar syntax which comes at the cost of restricted flexibility w.r.t. 
+    how you can make the best use of Javas object-oriented programming and underlying libraries that it uses (such as junit5). 
     We will see how we can achieve a high level of BDD (Behaviour driven development - tests), by using the best 
-    object-oriented design practices, without using cucumber. 
-- **Keeping this repository private**:
-  - To be able to showcase the power of badges, (which otherwise can not be demonstrated for private repos). 
-    As a measure to avoid others from using this framework as reference, I will make this assignment private right 
-    after the interview is done.
+    object-oriented design practices, without using cucumber.
 
 ## Key framework features
 - [x] **All tests to be atomic and independent**.
