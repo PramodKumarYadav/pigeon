@@ -81,6 +81,7 @@ The reasons for not usig cucumber are as below:
 - Verify that the stack is up by `docker stack ls`.
 - Verify that the services and replicas are up by `docker service ls`.
 - [Verify docker grid sessions](http://localhost:4444/ui/index.html#/)
+  - ![selenium-grid](./images/selenium-grid.png)
 - You can run tests on only three browsers (edge, chrome or firefox). Edge and chrome tests are stable.
     - `mvn clean -DBROWSER=edge test`
     - `mvn clean -DBROWSER=chrome test`
