@@ -78,6 +78,9 @@ public class PageActions {
         longWait.until(ExpectedConditions.urlToBe(page));
     }
 
+    public String getPageTitle() {
+        return driver.getTitle();
+    }
     public void scrollIntoView(WebElement webElement) {
         if (driver instanceof JavascriptExecutor) {
             ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true)", webElement);
@@ -162,10 +165,10 @@ public class PageActions {
     }
 
     public void getPageWithRetry(String pageUrl, By expectedElementLocator) {
-        /* sometimes there is a blank page displayed - probably some selenium bug.
-        If the page is not loaded try to open it once again */
         driver.get(pageUrl);
 
+        /* sometimes there can be a blank page displayed - probably some selenium bug.
+        If the page is not loaded try to open it once again */
         boolean validUrl = driver.getCurrentUrl().equals(pageUrl);
         boolean pageLoaded = isElementAvailableOnThePage(expectedElementLocator);
         if (! validUrl || ! pageLoaded) {
@@ -173,7 +176,14 @@ public class PageActions {
             sleepForSeconds(2);
             driver.get(pageUrl);
             longWait.until(ExpectedConditions.urlToBe(pageUrl));
+        }else{
+            log.info("Navigated to pageUrl: {}", pageUrl);
         }
+    }
+
+    protected boolean isElementAvailableOnThePage(By locator) {
+        List<WebElement> addButton = findElements(locator);
+        return addButton.size() > 0;
     }
 
     public void waitUntilElementIsDisplayed(WebElement webElement) {
@@ -196,7 +206,6 @@ public class PageActions {
         return waitUntilElementIsVisible(webElement).getText();
     }
 
-    // To close the home page (at the end of tests if required)
     public static void closeDriver(WebDriver driver) {
         driver.close();
     }
@@ -255,11 +264,6 @@ public class PageActions {
     protected void findElementAndClick(String cssSelector) {
         WebElement webElement = findElementByCssSelector(cssSelector);
         scrollIntoViewAndClick(webElement);
-    }
-
-    protected boolean isElementAvailableOnThePage(By locator) {
-        List<WebElement> addButton = findElements(locator);
-        return addButton.size() > 0;
     }
 
     public void findElementAndClick(By selector) {
