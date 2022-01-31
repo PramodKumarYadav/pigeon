@@ -25,7 +25,7 @@ public class NavigationSection {
 
     @FindBy(css = "a[aria-label='LOG IN'][title='LOG IN']")
     private WebElement loginSubMenuButton;
-    
+
     public NavigationSection clickFedExHomePageButton() {
         pageActions.clickViaJavaScript(fedExHomePageButton);
         return this;

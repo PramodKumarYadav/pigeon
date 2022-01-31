@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import fedex.pages.HomePage;
-import fedex.pages.LoginPage;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import testextensions.TestExecutionLifecycle;
@@ -24,7 +23,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class TestNavigationSection extends TestSetup {
     private HomePage homePage;
     private NavigationSection navigationSection;
-    private LoginPage loginPage;
     private PageActions pageActions;
 
     private static Config config = EnvFactory.getInstance().getConfig();
@@ -39,7 +37,6 @@ public class TestNavigationSection extends TestSetup {
                 acceptAllCookies();
 
         navigationSection = new NavigationSection(driver);
-        loginPage = new LoginPage(driver);
         pageActions = new PageActions(driver);
     }
 
@@ -59,7 +56,7 @@ public class TestNavigationSection extends TestSetup {
             navigationSection.clickFedExSignUpLoginButton().
                     andThen().
                     clickLoginButton();
-            assertEquals(LOGIN_PAGE_TITLE, loginPage.getLoginPageTitle());
+            assertEquals(LOGIN_PAGE_TITLE, pageActions.getPageTitle());
         }
     }
 
