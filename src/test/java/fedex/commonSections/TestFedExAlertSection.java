@@ -24,10 +24,7 @@ class TestFedExAlertSection extends TestSetup {
     @BeforeEach
     void initialize() {
         homePage = new HomePage(driver).
-                navigateToHomePageURL().
-                and().
-                acceptAllCookies();
-
+                navigateToHomePageURL();
         fedExAlertSection = new FedExAlertSection(driver);
     }
 
@@ -37,3 +34,4 @@ class TestFedExAlertSection extends TestSetup {
         assertEquals(FEDEX_ALERT_TEXT, fedExAlertSection.getFedExAlertText());
     }
 }
+
