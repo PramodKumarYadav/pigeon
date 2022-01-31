@@ -6,6 +6,7 @@
 # Stop with `docker stack rm grid`
 # Stop swarm mode `docker swarm leave --force`
 # HOST_URI="http://localhost:4444/wd/hub" to set in remote driver is this.
+# Access docker selenium grid on "http://localhost:4444"
 
 version: '3.7'
 
