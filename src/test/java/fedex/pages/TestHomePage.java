@@ -15,9 +15,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Tag("regression")
 @ExtendWith(TestExecutionLifecycle.class)
-public class TestHomePage extends TestSetup {
+class TestHomePage extends TestSetup {
     private HomePage homePage;
     private PageActions pageActions;
+
     private static Config config = EnvFactory.getInstance().getConfig();
     private static final String CAMPAIGN_PAGE_URL = config.getString("CAMPAIGN_PAGE_URL");
     private static final String HOME_PAGE_TITLE = config.getString("HOME_PAGE_TITLE");
