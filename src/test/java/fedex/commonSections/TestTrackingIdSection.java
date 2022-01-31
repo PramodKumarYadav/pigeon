@@ -1,8 +1,5 @@
 package fedex.commonSections;
 
-import actions.PageActions;
-import com.typesafe.config.Config;
-import config.EnvFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -11,17 +8,13 @@ import fedex.pages.HomePage;
 import testextensions.TestExecutionLifecycle;
 import testextensions.TestSetup;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Tag("regression")
 @ExtendWith(TestExecutionLifecycle.class)
-class TestFooterSocialSection extends TestSetup {
+public class TestTrackingIdSection extends TestSetup {
     private HomePage homePage;
-    private FooterSocialSection footerSocialSection;
-    private PageActions pageActions;
-
-    private static Config config = EnvFactory.getInstance().getConfig();
-    private static final String LINKEDIN_URL = config.getString("LINKEDIN_URL");
+    private TrackingIdSection trackingIdSection;
 
     @BeforeEach
     void initialize() {
@@ -30,13 +23,14 @@ class TestFooterSocialSection extends TestSetup {
                 and().
                 acceptAllCookies();
 
-        footerSocialSection = new FooterSocialSection(driver);
-        pageActions = new PageActions(driver);
+        trackingIdSection = new TrackingIdSection(driver);
     }
 
     @Test
     void assertThatTryingToTrackWithEmptyTrackingIdResultsInAWarningToTheUser() {
-        footerSocialSection.clickLinkedInLink();
-        assertTrue(pageActions.getCurrentPageURL().contains(LINKEDIN_URL));
+        trackingIdSection
+                .setTrackingIdInputField("")
+                .clickTrackButton();
+        assertEquals("Please enter at least one tracking number.", trackingIdSection.getTrackingIdValidationMessage());
     }
 }

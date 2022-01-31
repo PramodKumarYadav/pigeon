@@ -27,6 +27,7 @@ class TestFooterPrimarySection extends TestSetup {
     void initialize() {
         homePage = new HomePage(driver).
                 navigateToHomePageURL().
+                and().
                 acceptAllCookies();
 
         footerPrimarySection = new FooterPrimarySection(driver);
