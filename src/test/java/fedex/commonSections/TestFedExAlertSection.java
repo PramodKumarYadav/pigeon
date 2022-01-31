@@ -34,3 +34,4 @@ class TestFedExAlertSection extends TestSetup {
         assertEquals(FEDEX_ALERT_TEXT, fedExAlertSection.getFedExAlertText());
     }
 }
+
