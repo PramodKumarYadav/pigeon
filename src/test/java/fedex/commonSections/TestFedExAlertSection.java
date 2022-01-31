@@ -15,6 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @Tag("regression")
 @ExtendWith(TestExecutionLifecycle.class)
 class TestFedExAlertSection extends TestSetup {
+    private HomePage homePage;
     private FedExAlertSection fedExAlertSection;
 
     private static Config config = EnvFactory.getInstance().getConfig();
@@ -22,7 +23,7 @@ class TestFedExAlertSection extends TestSetup {
 
     @BeforeEach
     void initialize() {
-        HomePage homePage = new HomePage(driver).
+        homePage = new HomePage(driver).
                 navigateToHomePageURL();
 
         fedExAlertSection = new FedExAlertSection(driver);

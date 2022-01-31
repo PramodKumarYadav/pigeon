@@ -17,7 +17,6 @@ public class FedExAlertSection {
     @FindBy(css = "div[class='fxg-alert__text fxg-alert__text-spacer'] > p")
     private WebElement fedExAlert;
 
-
     public String getFedExAlertText(){
         return pageActions.getTextFromElement(fedExAlert);
     }

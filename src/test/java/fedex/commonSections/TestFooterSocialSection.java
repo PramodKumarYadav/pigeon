@@ -11,17 +11,17 @@ import fedex.pages.HomePage;
 import testextensions.TestExecutionLifecycle;
 import testextensions.TestSetup;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Tag("regression")
 @ExtendWith(TestExecutionLifecycle.class)
-class TestFooterPrimarySection extends TestSetup {
+class TestFooterSocialSection extends TestSetup {
     private HomePage homePage;
-    private FooterPrimarySection footerPrimarySection;
+    private FooterSocialSection footerSocialSection;
     private PageActions pageActions;
 
     private static Config config = EnvFactory.getInstance().getConfig();
-    private static final String FEDEX_ABOUT_US_URL = config.getString("FEDEX_ABOUT_US_URL");
+    private static final String LINKEDIN_URL = config.getString("LINKEDIN_URL");
 
     @BeforeEach
     void initialize() {
@@ -29,13 +29,13 @@ class TestFooterPrimarySection extends TestSetup {
                 navigateToHomePageURL().
                 acceptAllCookies();
 
-        footerPrimarySection = new FooterPrimarySection(driver);
+        footerSocialSection = new FooterSocialSection(driver);
         pageActions = new PageActions(driver);
     }
 
     @Test
     void assertThatTryingToTrackWithEmptyTrackingIdResultsInAWarningToTheUser() {
-        footerPrimarySection.clickAboutFedExLink();
-        assertEquals(FEDEX_ABOUT_US_URL, pageActions.getCurrentPageURL());
+        footerSocialSection.clickLinkedInLink();
+        assertTrue(pageActions.getCurrentPageURL().contains(LINKEDIN_URL));
     }
 }

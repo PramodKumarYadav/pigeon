@@ -6,19 +6,19 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class FooterPrimarySection {
+public class FooterSocialSection {
     private PageActions pageActions;
 
-    public FooterPrimarySection(WebDriver driver) {
+    public FooterSocialSection(WebDriver driver) {
         PageFactory.initElements(driver, this);
         pageActions = new PageActions(driver);
     }
 
-    @FindBy(css = "a[aria-label='About FedEx']")
-    private WebElement aboutFedExLink;
+    @FindBy(css = "img[class='fxg-icon fxg-icon--linkedin   ']")
+    private WebElement linkedInLink;
 
-    public FooterPrimarySection clickAboutFedExLink() {
-        pageActions.clickViaJavaScript(aboutFedExLink);
+    public FooterSocialSection clickLinkedInLink() {
+        pageActions.clickViaJavaScript(linkedInLink);
         return this;
     }
 }
