@@ -1,4 +1,4 @@
-package pages.home;
+package fedex.pages;
 
 import actions.PageActions;
 import com.typesafe.config.Config;
@@ -20,8 +20,11 @@ public class HomePage {
         pageActions = new PageActions(driver);
     }
 
-    @FindBy(css = "div[class='fxg-alert__text fxg-alert__text-spacer'] > p")
-    private WebElement fedExAlert;
+    @FindBy(css = "button[class='fxg-cookie-consent__accept fxg-button fxg-button--orange js-fxg-cookie-save is-save-all']")
+    private WebElement acceptAllCookies;
+
+    @FindBy(css = "a[data-analytics=\"foc|Find Out More\"]")
+    private WebElement deliveryChoicesFindOutMoreButton;
 
     public HomePage navigateToHomePageURL() {
         pageActions.getPageWithRetry(HOME_PAGE_URL, By.cssSelector("button[id='btnSingleTrack']"));
@@ -30,5 +33,20 @@ public class HomePage {
 
     public String getHomePageTitle() {
         return pageActions.getPageTitle();
+    }
+
+    public HomePage acceptAllCookies() {
+        pageActions.scrollIntoViewAndClick(acceptAllCookies);
+        return this;
+    }
+
+    /** sugar syntax */
+    public HomePage and() {
+        return this;
+    }
+
+    public HomePage clickDeliveryChoicesFindOutMoreButton() {
+        pageActions.clickViaJavaScript(deliveryChoicesFindOutMoreButton);
+        return this;
     }
 }
