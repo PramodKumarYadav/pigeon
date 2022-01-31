@@ -24,10 +24,7 @@ class TestFedExAlertSection extends TestSetup {
     @BeforeEach
     void initialize() {
         homePage = new HomePage(driver).
-                navigateToHomePageURL().
-                and().
-                acceptAllCookies();
-
+                navigateToHomePageURL();
         fedExAlertSection = new FedExAlertSection(driver);
     }
 
