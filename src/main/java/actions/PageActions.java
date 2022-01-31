@@ -81,6 +81,11 @@ public class PageActions {
     public String getPageTitle() {
         return driver.getTitle();
     }
+
+    public String getCurrentPageURL() {
+        return driver.getCurrentUrl();
+    }
+
     public void scrollIntoView(WebElement webElement) {
         if (driver instanceof JavascriptExecutor) {
             ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true)", webElement);
@@ -243,17 +248,17 @@ public class PageActions {
     }
 
     // We want to extend these methods but not to show them in intellisense as domain methods.
-    protected void findElementAndSetTextField(String cssSelector, String textToSet) {
+    public void findElementAndSetTextField(String cssSelector, String textToSet) {
         WebElement element = findElementByCssSelector(cssSelector);
         setTextField(element, textToSet);
     }
 
-    protected void findElementsAndSetAListItem(String cssSelector, String listItem) {
+    public void findElementsAndSetAListItem(String cssSelector, String listItem) {
         List<WebElement> elements = findElementsByCssSelector(cssSelector);
         setListItem(elements, "data-value", listItem);
     }
 
-    protected List<WebElement> findElementsByCssSelector(String cssSelector) {
+    public List<WebElement> findElementsByCssSelector(String cssSelector) {
         return driver.findElements(By.cssSelector(cssSelector));
     }
 
