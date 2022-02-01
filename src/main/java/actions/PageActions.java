@@ -64,6 +64,7 @@ public class PageActions {
      */
     public void scrollIntoViewAndClick(WebElement webElement) {
         try {
+            waitForElementToBeClickable(webElement);
             scrollIntoView(webElement);
             webElement.click();
         } catch (Exception exception) {
