@@ -1,4 +1,4 @@
-package runners;
+package fedex.pages;
 
 
 import io.cucumber.junit.Cucumber;
@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 @RunWith(Cucumber.class)
 @CucumberOptions(
         features = "src/test/resources/featureFiles",
-        glue= {"stepDefinitions"}
+        glue = {"stepDefinitions"}
 )
-public class TestRunnerHomePage {
+public class TestRunner {
 }
