@@ -32,7 +32,9 @@ public class TestNavigationSection extends TestSetup {
     @BeforeEach
     void initialize() {
         homePage = new HomePage(driver).
-                navigateToHomePageURL();
+                navigateToHomePageURL()
+                .and()
+                .acceptAllCookies();
 
         navigationSection = new NavigationSection(driver);
         pageActions = new PageActions(driver);

@@ -19,7 +19,9 @@ public class TestTrackingIdSection extends TestSetup {
     @BeforeEach
     void initialize() {
         homePage = new HomePage(driver).
-                navigateToHomePageURL();
+                navigateToHomePageURL()
+                .and()
+                .acceptAllCookies();
 
         trackingIdSection = new TrackingIdSection(driver);
     }
