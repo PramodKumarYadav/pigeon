@@ -64,6 +64,7 @@ public class PageActions {
      */
     public void scrollIntoViewAndClick(WebElement webElement) {
         try {
+            waitForElementToBeClickable(webElement);
             scrollIntoView(webElement);
             webElement.click();
         } catch (Exception exception) {
@@ -98,7 +99,7 @@ public class PageActions {
         return SeleniumTable.getInstance(tableElement);
     }
 
-    private void scrollIntoViewAndCenter(WebElement webElement) {
+    public void scrollIntoViewAndCenter(WebElement webElement) {
         String scrollElementIntoMiddle = "var viewPortHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);"
                 + "var elementTop = arguments[0].getBoundingClientRect().top;"
                 + "window.scrollBy(0, elementTop-(viewPortHeight/2));";
@@ -391,4 +392,12 @@ public class PageActions {
 //        var y = e.pageY;
 //        e.target.title = "X is " + x + " and Y is " + y;
 //    };
+
+    public void waitForPageToLoad() {
+        longWait.until(webDriver1 -> ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete"));
+    }
+
+    public void clickCoordinates(WebElement element, int dx, int dy) {
+        new Actions(driver).moveToElement(element).moveByOffset(dx, dy).click().perform();
+    }
 }

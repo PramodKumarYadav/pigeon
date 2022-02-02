@@ -32,7 +32,9 @@ public class TestNavigationSection extends TestSetup {
     @BeforeEach
     void initialize() {
         homePage = new HomePage(driver).
-                navigateToHomePageURL();
+                navigateToHomePageURL()
+                .and()
+                .acceptAllCookies();
 
         navigationSection = new NavigationSection(driver);
         pageActions = new PageActions(driver);
@@ -50,6 +52,7 @@ public class TestNavigationSection extends TestSetup {
     @Nested
     class SignUpLoginMenu {
         @Test
+        @Tag("flaky")
         void assertThatSignUpLoginNavigationMenuButtonOpensSubItemsAndYouCanClickASubItem() {
             navigationSection.clickFedExSignUpLoginButton().
                     andThen().
@@ -66,6 +69,7 @@ public class TestNavigationSection extends TestSetup {
             assertEquals(TOTAL_MENUS, navigationSection.getMainMenuItems().size());
         }
 
+        @Tag("flaky")
         @DisplayName("Ideally we would have separate nested classes for each of them as shown in the next " +
                 "nested sub class ShippingMenu - and with asserts. This test is just for demo to show" +
                 "that these areas are important to cover in their own sub sections.")
@@ -82,6 +86,7 @@ public class TestNavigationSection extends TestSetup {
 
     @Nested
     class ShippingMenu {
+        @Tag("flaky")
         @Test
         void assertThatShippingMenuDropDownButtonWorks() {
             Integer positionShipping = 0;
@@ -90,6 +95,7 @@ public class TestNavigationSection extends TestSetup {
             assertEquals(TOTAL_SUB_ITEMS, navigationSection.getSubMenuItems(positionShipping).size());
         }
 
+        @Tag("flaky")
         @Test
         void assertThatClickingSubMenuItemShipWithAccountInShippingMenuTakesUserToLoginPage() {
             Integer positionShipping = 0;
