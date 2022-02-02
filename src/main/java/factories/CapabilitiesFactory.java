@@ -24,6 +24,7 @@ import choices.Browser;
 import com.typesafe.config.Config;
 import config.EnvFactory;
 import org.openqa.selenium.Capabilities;
+import org.openqa.selenium.Cookie;
 import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeOptions;
@@ -76,6 +77,7 @@ public class CapabilitiesFactory {
         Map<String, Object> prefs = new Hashtable<String, Object>();
         prefs.put("plugins.always_open_pdf_externally", true);
         prefs.put("download.default_directory", String.format("%s\\%s", System.getProperty("user.dir"), DOWNLOADS_DIR));
+        prefs.put("profile.default_content_settings.cookies", 2);
         chromeOptions.setExperimentalOption("prefs", prefs);
 
         // To get error console logs

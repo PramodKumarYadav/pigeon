@@ -27,4 +27,4 @@ jobs:
         chmod +x ./install/install-chrome.sh
          ./install/install-chrome.sh
     - name: Build and Test with Maven
-      run: mvn clean -DHEADLESS=true -DMONITORING_INFRA_READY_ON_ELASTIC_KIBANA=false test
+      run: mvn clean -DHEADLESS=true -DexcludedGroups=flaky -DMONITORING_INFRA_READY_ON_ELASTIC_KIBANA=false test

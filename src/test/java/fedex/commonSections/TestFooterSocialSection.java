@@ -26,7 +26,9 @@ class TestFooterSocialSection extends TestSetup {
     @BeforeEach
     void initialize() {
         homePage = new HomePage(driver).
-                navigateToHomePageURL();
+                navigateToHomePageURL()
+                .and()
+                .acceptAllCookies();
 
         footerSocialSection = new FooterSocialSection(driver);
         pageActions = new PageActions(driver);

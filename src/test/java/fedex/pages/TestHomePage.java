@@ -26,7 +26,9 @@ class TestHomePage extends TestSetup {
     @BeforeEach
     void initialize() {
         homePage = new HomePage(driver).
-                navigateToHomePageURL();
+                navigateToHomePageURL()
+                .and()
+                .acceptAllCookies();
 
         pageActions = new PageActions(driver);
     }
