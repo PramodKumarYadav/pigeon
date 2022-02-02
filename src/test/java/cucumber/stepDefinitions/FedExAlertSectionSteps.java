@@ -1,4 +1,4 @@
-package cucumber.stepDefinitions.pages;
+package cucumber.stepDefinitions.commonSections;
 
 import com.typesafe.config.Config;
 import config.EnvFactory;
@@ -54,12 +54,6 @@ class FedExAlertSectionSteps {
         PublishTestResults.toElastic();
         log.info("Published results to Elastic");
     }
-
-//    @Tag("smokeTest")
-//    @Test
-//    void assertThatFedExCovidAlertTextIsCorrect() {
-//        assertEquals(FEDEX_ALERT_TEXT, fedExAlertSection.getFedExAlertText());
-//    }
 
     @Given("User is on Home Page")
     public void user_is_on_home_page() {

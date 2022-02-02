@@ -1,12 +1,12 @@
-package cucumber.stepDefinitions;
+package cucumber.stepDefinitions.pages;
 
 import actions.PageActions;
 import com.typesafe.config.Config;
 import config.EnvFactory;
+import fedex.commonSections.FedExAlertSection;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import testextensions.PublishTestResults;
-import testextensions.TestSetupCucumber;
 import factories.DriverFactory;
 import fedex.pages.HomePage;
 import io.cucumber.java.en.Given;
@@ -26,10 +26,12 @@ public class HomePageSteps {
 
     private HomePage homePage;
     private PageActions pageActions;
+    private FedExAlertSection fedExAlertSection;
 
     private static Config config = EnvFactory.getInstance().getConfig();
     private static final String CAMPAIGN_PAGE_URL = config.getString("CAMPAIGN_PAGE_URL");
     private static final String HOME_PAGE_TITLE = config.getString("HOME_PAGE_TITLE");
+    private static final String FEDEX_ALERT_TEXT = config.getString("FEDEX_ALERT_TEXT");
 
     @Before
     public void setUp() {
@@ -65,4 +67,14 @@ public class HomePageSteps {
     public void user_is_redirected_to_campaign_page_url() {
         assertEquals(CAMPAIGN_PAGE_URL , pageActions.getCurrentPageURL());
     }
+
+//    @When("User looks at the top section of Home Page")
+//    public void user_looks_at_the_top_section_of_home_page() {
+//        fedExAlertSection = new FedExAlertSection(driver);
+//    }
+//
+//    @Then("User sees a FedEx alert")
+//    public void user_sees_a_fed_ex_alert() {
+//        assertEquals(FEDEX_ALERT_TEXT, fedExAlertSection.getFedExAlertText());
+//    }
 }
