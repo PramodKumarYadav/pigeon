@@ -86,6 +86,7 @@ public class TestNavigationSection extends TestSetup {
 
     @Nested
     class ShippingMenu {
+        @Tag("flaky")
         @Test
         void assertThatShippingMenuDropDownButtonWorks() {
             Integer positionShipping = 0;
@@ -94,6 +95,7 @@ public class TestNavigationSection extends TestSetup {
             assertEquals(TOTAL_SUB_ITEMS, navigationSection.getSubMenuItems(positionShipping).size());
         }
 
+        @Tag("flaky")
         @Test
         void assertThatClickingSubMenuItemShipWithAccountInShippingMenuTakesUserToLoginPage() {
             Integer positionShipping = 0;
