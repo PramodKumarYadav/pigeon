@@ -27,6 +27,7 @@ public class HomePage {
     private WebElement deliveryChoicesFindOutMoreButton;
 
     public HomePage navigateToHomePageURL() {
+        pageActions.waitForPageToLoad();
         pageActions.getPageWithRetry(HOME_PAGE_URL, By.cssSelector("button[id='btnSingleTrack']"));
         return this;
     }
