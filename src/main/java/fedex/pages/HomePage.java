@@ -38,7 +38,7 @@ public class HomePage {
 
     public HomePage acceptAllCookies() {
         pageActions.scrollIntoViewAndCenter(acceptAllCookies);
-        pageActions.scrollIntoViewAndClick(acceptAllCookies);
+//        pageActions.scrollIntoViewAndClick(acceptAllCookies);
         return this;
     }
 
