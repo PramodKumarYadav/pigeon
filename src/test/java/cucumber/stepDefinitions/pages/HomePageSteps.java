@@ -1,18 +1,20 @@
-package stepDefinitions;
+package cucumber.stepDefinitions;
 
 import actions.PageActions;
 import com.typesafe.config.Config;
 import config.EnvFactory;
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
+import testextensions.PublishTestResults;
+import testextensions.TestSetupCucumber;
 import factories.DriverFactory;
 import fedex.pages.HomePage;
-import io.cucumber.java.After;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.WebDriver;
-import testextensions.PublishTestResults;
 import testextensions.TestExecutionLifecycle;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -20,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @Slf4j
 @ExtendWith(TestExecutionLifecycle.class)
 public class HomePageSteps {
-    WebDriver driver = DriverFactory.getDriver();
+    WebDriver driver;
 
     private HomePage homePage;
     private PageActions pageActions;
@@ -28,6 +30,15 @@ public class HomePageSteps {
     private static Config config = EnvFactory.getInstance().getConfig();
     private static final String CAMPAIGN_PAGE_URL = config.getString("CAMPAIGN_PAGE_URL");
     private static final String HOME_PAGE_TITLE = config.getString("HOME_PAGE_TITLE");
+
+    @Before
+    public void setUp() {
+        this.driver = DriverFactory.getDriver();
+        DriverFactory.setDriverTimeouts(driver);
+
+        homePage = new HomePage(driver);
+        pageActions = new PageActions(driver);
+    }
 
     @After
     public void postProcessing() {
@@ -41,8 +52,6 @@ public class HomePageSteps {
 
     @Given("User is on Home Page")
     public void user_is_on_home_page() {
-        homePage = new HomePage(driver);
-        pageActions = new PageActions(driver);
         homePage.navigateToHomePageURL();
         assertEquals(HOME_PAGE_TITLE, homePage.getHomePageTitle());
     }
