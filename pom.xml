@@ -22,6 +22,7 @@
         <selenium.table.version>1.1</selenium.table.version>
         <ashot.version>1.5.4</ashot.version>
         <pdfbox.version>2.0.24</pdfbox.version>
+        <cucumber.version>7.2.3</cucumber.version>
     </properties>
 
     <dependencyManagement>
@@ -136,20 +137,20 @@
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-java</artifactId>
-            <version>7.2.3</version>
+            <version>${cucumber.version}</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-junit -->
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-junit</artifactId>
-            <version>7.2.3</version>
+            <version>${cucumber.version}</version>
             <scope>test</scope>
         </dependency>
         <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-core -->
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-core</artifactId>
-            <version>7.2.3</version>
+            <version>${cucumber.version}</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/io.cucumber/gherkin -->
         <dependency>
@@ -161,12 +162,18 @@
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-java8</artifactId>
-            <version>7.2.3</version>
+            <version>${cucumber.version}</version>
         </dependency>
         <dependency>
             <groupId>info.cukes</groupId>
             <artifactId>cucumber-jvm-deps</artifactId>
             <version>1.0.5</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-junit-platform-engine -->
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-junit-platform-engine</artifactId>
+            <version>${cucumber.version}</version>
         </dependency>
     </dependencies>
     <build>
