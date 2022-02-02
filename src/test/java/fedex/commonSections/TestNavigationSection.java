@@ -52,6 +52,7 @@ public class TestNavigationSection extends TestSetup {
     @Nested
     class SignUpLoginMenu {
         @Test
+        @Tag("flaky")
         void assertThatSignUpLoginNavigationMenuButtonOpensSubItemsAndYouCanClickASubItem() {
             navigationSection.clickFedExSignUpLoginButton().
                     andThen().
@@ -68,6 +69,7 @@ public class TestNavigationSection extends TestSetup {
             assertEquals(TOTAL_MENUS, navigationSection.getMainMenuItems().size());
         }
 
+        @Tag("flaky")
         @DisplayName("Ideally we would have separate nested classes for each of them as shown in the next " +
                 "nested sub class ShippingMenu - and with asserts. This test is just for demo to show" +
                 "that these areas are important to cover in their own sub sections.")

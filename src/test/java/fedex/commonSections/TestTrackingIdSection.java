@@ -26,6 +26,7 @@ public class TestTrackingIdSection extends TestSetup {
         trackingIdSection = new TrackingIdSection(driver);
     }
 
+    @Tag("flaky")
     @Test
     void assertThatTryingToTrackWithEmptyTrackingIdResultsInAWarningToTheUser() {
         trackingIdSection
