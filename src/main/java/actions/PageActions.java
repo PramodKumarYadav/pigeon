@@ -392,4 +392,8 @@ public class PageActions {
 //        var y = e.pageY;
 //        e.target.title = "X is " + x + " and Y is " + y;
 //    };
+
+    public void waitForPageToLoad() {
+        longWait.until(webDriver1 -> ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete"));
+    }
 }
