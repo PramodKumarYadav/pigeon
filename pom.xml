@@ -190,7 +190,7 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>1.6.0</version>
                 <configuration>
-                    <mainClass>cucumber.TestRunnerHomePage</mainClass>
+                    <mainClass>cucumber.TestRunnerPages</mainClass>
                 </configuration>
             </plugin>
         </plugins>
