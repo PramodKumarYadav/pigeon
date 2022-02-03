@@ -35,7 +35,7 @@ class TestFooterSocialSection extends TestSetup {
     }
 
     @Test
-    void assertThatTryingToTrackWithEmptyTrackingIdResultsInAWarningToTheUser() {
+    void assertThatClickingOnLinkedInLinkTakesUserToLinkedInHomePage() {
         footerSocialSection.clickLinkedInLink();
         assertTrue(pageActions.getCurrentPageURL().contains(LINKEDIN_URL));
     }
