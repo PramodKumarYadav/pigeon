@@ -3,40 +3,45 @@ package cucumber.stepDefinitions;
 import actions.PageActions;
 import com.typesafe.config.Config;
 import config.EnvFactory;
+import factories.DriverFactory;
+import fedex.commonSections.FooterPrimarySection;
+import fedex.pages.HomePage;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
-import testextensions.PublishTestResults;
-import factories.DriverFactory;
-import fedex.pages.HomePage;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.WebDriver;
+import testextensions.PublishTestResults;
 import testextensions.TestExecutionLifecycle;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Slf4j
 @ExtendWith(TestExecutionLifecycle.class)
-public class HomePageSteps {
+public class FooterPrimarySectionSteps {
     WebDriver driver;
 
     private HomePage homePage;
+    private FooterPrimarySection footerPrimarySection;
     private PageActions pageActions;
 
     private static Config config = EnvFactory.getInstance().getConfig();
-    private static final String CAMPAIGN_PAGE_URL = config.getString("CAMPAIGN_PAGE_URL");
-    private static final String HOME_PAGE_TITLE = config.getString("HOME_PAGE_TITLE");
-    private static final String FEDEX_ALERT_TEXT = config.getString("FEDEX_ALERT_TEXT");
+    private static final String FEDEX_ABOUT_US_URL = config.getString("FEDEX_ABOUT_US_URL");
 
     @Before
     public void setUp() {
         this.driver = DriverFactory.getDriver();
         DriverFactory.setDriverTimeouts(driver);
 
-        homePage = new HomePage(driver);
+        homePage = new HomePage(driver).
+                navigateToHomePageURL()
+                .and()
+                .acceptAllCookies();
+
+        footerPrimarySection = new FooterPrimarySection(driver);
         pageActions = new PageActions(driver);
     }
 
@@ -50,23 +55,17 @@ public class HomePageSteps {
         log.info("Published results to Elastic");
     }
 
-    @Given("User is on Home Page")
-    public void user_is_on_home_page() {
+    @Given("User is looking at Primary Footer section")
+    public void user_is_looking_at_primary_footer_section() {
         homePage.navigateToHomePageURL();
     }
 
-    @Then("verify that the title is correct")
-    public void verify_that_the_title_is_correct() {
-        assertEquals(HOME_PAGE_TITLE, homePage.getHomePageTitle());
+    @When("User clicks on about fedex link")
+    public void user_clicks_on_about_fedex_link() {
+        footerPrimarySection.clickAboutFedExLink();
     }
-
-    @When("User Clicks on Find out more button on Get more delivery choices")
-    public void user_clicks_on_find_out_more_button_on_get_more_delivery_choices() {
-        homePage.clickDeliveryChoicesFindOutMoreButton();
-    }
-
-    @Then("User is redirected to CAMPAIGN_PAGE_URL")
-    public void user_is_redirected_to_campaign_page_url() {
-        assertEquals(CAMPAIGN_PAGE_URL , pageActions.getCurrentPageURL());
+    @Then("User is redirected to FEDEX_ABOUT_US_URL")
+    public void user_is_redirected_to_fedex_about_us_url() {
+        assertEquals(FEDEX_ABOUT_US_URL, pageActions.getCurrentPageURL());
     }
 }
