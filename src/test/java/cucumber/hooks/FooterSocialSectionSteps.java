@@ -27,7 +27,7 @@ public class FooterSocialSectionSteps {
 
     @Given("User is looking at Social Footer section")
     public void user_is_looking_at_social_footer_section() {
-        driver = SetupCucumber.getDriver();
+        driver = SetupCucumberHooks.getDriver();
 
         homePage = new HomePage(driver).
                 navigateToHomePageURL()

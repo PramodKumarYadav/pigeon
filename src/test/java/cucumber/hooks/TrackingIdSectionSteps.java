@@ -20,7 +20,7 @@ public class TrackingIdSectionSteps {
 
     @Given("User is looking at tracking id section")
     public void user_is_looking_at_tracking_id_section() {
-        driver = SetupCucumber.getDriver();
+        driver = SetupCucumberHooks.getDriver();
 
         homePage = new HomePage(driver).
                 navigateToHomePageURL()

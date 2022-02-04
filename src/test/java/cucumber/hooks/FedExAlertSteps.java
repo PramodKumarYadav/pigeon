@@ -7,7 +7,6 @@ import fedex.pages.HomePage;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -24,7 +23,7 @@ public class FedExAlertSteps {
 
     @Given("User is on Home Page again")
     public void user_is_on_home_page_again() {
-        driver = SetupCucumber.getDriver();
+        driver = SetupCucumberHooks.getDriver();
 
         homePage = new HomePage(driver);
 

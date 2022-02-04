@@ -29,7 +29,7 @@ public class FooterPrimarySectionSteps {
 
     @Given("User is looking at Primary Footer section")
     public void user_is_looking_at_primary_footer_section() {
-        driver = SetupCucumber.getDriver();
+        driver = SetupCucumberHooks.getDriver();
 
         homePage = new HomePage(driver).
                 navigateToHomePageURL()

@@ -8,7 +8,7 @@ import org.openqa.selenium.WebDriver;
 import testextensions.PublishTestResults;
 
 @Slf4j
-public class SetupCucumber {
+public class SetupCucumberHooks {
     private static WebDriver driver;
 
     @Before

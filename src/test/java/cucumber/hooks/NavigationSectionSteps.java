@@ -30,7 +30,7 @@ public class NavigationSectionSteps {
 
     @Given("User is looking at navigation menu section")
     public void user_is_looking_at_navigation_menu_section() {
-        driver = SetupCucumber.getDriver();
+        driver = SetupCucumberHooks.getDriver();
 
         homePage = new HomePage(driver).
                 navigateToHomePageURL()
