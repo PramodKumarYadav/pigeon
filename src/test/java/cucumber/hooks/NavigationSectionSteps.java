@@ -3,6 +3,7 @@ package cucumber.newSteps;
 import actions.PageActions;
 import com.typesafe.config.Config;
 import config.EnvFactory;
+import cucumber.hooks.SetupCucumber;
 import factories.DriverFactory;
 import fedex.commonSections.NavigationSection;
 import fedex.pages.HomePage;
@@ -46,19 +47,18 @@ public class NavigationSectionSteps {
         pageActions = new PageActions(driver);
     }
 
-    @After
-    public void postProcessing() {
-        driver.close();
-        driver.quit();
-        log.info("tear down complete");
-
-        PublishTestResults.toElastic();
-        log.info("Published results to Elastic");
-    }
 
     @Given("User is looking at tracking id sectionafaf")
     public void user_is_looking_at_tracking_id_sectionadfadfasf() {
-        homePage.navigateToHomePageURL();
+        driver = SetupCucumber.getDriver();
+
+        homePage = new HomePage(driver).
+                navigateToHomePageURL()
+                .and()
+                .acceptAllCookies();
+
+        navigationSection = new NavigationSection(driver);
+        pageActions = new PageActions(driver);
     }
 
     @Given("User is looking at navigation menu section")
