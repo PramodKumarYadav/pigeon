@@ -7,7 +7,7 @@ import org.junit.runner.RunWith;
 @RunWith(Cucumber.class)
 @CucumberOptions(
         features = "src/test/resources/features/new",
-        glue = {"cucumber/newSteps"},
+        glue = {"cucumber/stepDefinitions"},
         plugin = {"pretty"}
 )
 public class TestRunnerSandboxForNewFeatures {

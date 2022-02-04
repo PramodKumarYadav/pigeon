@@ -21,8 +21,8 @@ public class FedExAlertSteps {
     private static final String FEDEX_ALERT_TEXT = config.getString("FEDEX_ALERT_TEXT");
     private static final String HOME_PAGE_TITLE = config.getString("HOME_PAGE_TITLE");
 
-    @Given("User is on Home Page again")
-    public void user_is_on_home_page_again() {
+    @Given("User is looking at the top alert section")
+    public void user_is_looking_at_the_top_alert_section() {
         driver = SetupCucumberHooks.getDriver();
 
         homePage = new HomePage(driver);
@@ -31,8 +31,8 @@ public class FedExAlertSteps {
         assertEquals(HOME_PAGE_TITLE, homePage.getHomePageTitle());
     }
 
-    @When("User looks at the top section of Home Page")
-    public void user_looks_at_the_top_section_of_home_page() {
+    @When("User checks for an alert message")
+    public void user_checks_for_an_alert_message() {
         fedExAlertSection = new FedExAlertSection(driver);
     }
     @Then("User sees a FedEx alert")
