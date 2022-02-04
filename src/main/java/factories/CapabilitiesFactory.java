@@ -73,6 +73,7 @@ public class CapabilitiesFactory {
         chromeOptions.addArguments("start-maximized");
         chromeOptions.setPageLoadStrategy(PageLoadStrategy.NORMAL);
         chromeOptions.addArguments("--enable-javascript");
+        chromeOptions.addArguments("--disable-notifications");
 
         Map<String, Object> prefs = new Hashtable<String, Object>();
         prefs.put("plugins.always_open_pdf_externally", true);

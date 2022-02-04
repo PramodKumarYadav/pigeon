@@ -1,21 +1,23 @@
-package fedex.commonSections;
+package cucumber.stepDefinitions;
 
 import actions.PageActions;
 import com.typesafe.config.Config;
 import config.EnvFactory;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
+import fedex.commonSections.FooterSocialSection;
 import fedex.pages.HomePage;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.openqa.selenium.WebDriver;
 import testextensions.TestExecutionLifecycle;
-import testextensions.TestSetup;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@Tag("regression")
 @ExtendWith(TestExecutionLifecycle.class)
-class TestFooterSocialSection extends TestSetup {
+public class FooterSocialSectionSteps {
+    WebDriver driver;
+
     private HomePage homePage;
     private FooterSocialSection footerSocialSection;
     private PageActions pageActions;
@@ -23,8 +25,10 @@ class TestFooterSocialSection extends TestSetup {
     private static Config config = EnvFactory.getInstance().getConfig();
     private static final String LINKEDIN_URL = config.getString("LINKEDIN_URL");
 
-    @BeforeEach
-    void initialize() {
+    @Given("User is looking at Social Footer section")
+    public void user_is_looking_at_social_footer_section() {
+        driver = SetupCucumberHooks.getDriver();
+
         homePage = new HomePage(driver).
                 navigateToHomePageURL()
                 .and()
@@ -32,11 +36,17 @@ class TestFooterSocialSection extends TestSetup {
 
         footerSocialSection = new FooterSocialSection(driver);
         pageActions = new PageActions(driver);
+
+        homePage.navigateToHomePageURL();
     }
 
-    @Test
-    void assertThatClickingOnLinkedInLinkTakesUserToLinkedInHomePage() {
+    @When("User clicks on LinkedIn icon button")
+    public void user_clicks_on_linked_in_icon_button() {
         footerSocialSection.clickLinkedInLink();
+    }
+
+    @Then("User is redirected to LINKEDIN_URL")
+    public void user_is_redirected_to_linkedin_url() {
         assertTrue(pageActions.getCurrentPageURL().contains(LINKEDIN_URL));
     }
 }
