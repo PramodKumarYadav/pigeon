@@ -9,7 +9,7 @@ import testextensions.PublishTestResults;
 
 @Slf4j
 public class SetupCucumber {
-    public WebDriver driver;
+    private static WebDriver driver;
 
     @Before
     public void setUp() {
@@ -25,5 +25,9 @@ public class SetupCucumber {
 
         PublishTestResults.toElastic();
         log.info("Published results to Elastic");
+    }
+
+    public static WebDriver getDriver() {
+        return driver;
     }
 }
