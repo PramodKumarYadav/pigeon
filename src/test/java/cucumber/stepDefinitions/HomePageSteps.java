@@ -3,10 +3,6 @@ package cucumber.stepDefinitions;
 import actions.PageActions;
 import com.typesafe.config.Config;
 import config.EnvFactory;
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
-import testextensions.PublishTestResults;
-import factories.DriverFactory;
 import fedex.pages.HomePage;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -31,27 +27,13 @@ public class HomePageSteps {
     private static final String HOME_PAGE_TITLE = config.getString("HOME_PAGE_TITLE");
     private static final String FEDEX_ALERT_TEXT = config.getString("FEDEX_ALERT_TEXT");
 
-    @Before
-    public void setUp() {
-        this.driver = DriverFactory.getDriver();
-        DriverFactory.setDriverTimeouts(driver);
+    @Given("User is on Home Page")
+    public void user_is_on_home_page() {
+        driver = SetupCucumberHooks.getDriver();
 
         homePage = new HomePage(driver);
         pageActions = new PageActions(driver);
-    }
 
-    @After
-    public void postProcessing() {
-        driver.close();
-        driver.quit();
-        log.info("tear down complete");
-
-        PublishTestResults.toElastic();
-        log.info("Published results to Elastic");
-    }
-
-    @Given("User is on Home Page")
-    public void user_is_on_home_page() {
         homePage.navigateToHomePageURL();
     }
 
