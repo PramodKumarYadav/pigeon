@@ -1,21 +1,16 @@
-package cucumber.newSteps;
+package cucumber.hooks;
 
 import actions.PageActions;
 import com.typesafe.config.Config;
 import config.EnvFactory;
-import cucumber.hooks.SetupCucumber;
-import factories.DriverFactory;
 import fedex.commonSections.NavigationSection;
 import fedex.pages.HomePage;
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.WebDriver;
-import testextensions.PublishTestResults;
 import testextensions.TestExecutionLifecycle;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -33,23 +28,8 @@ public class NavigationSectionSteps {
     private static final String HOME_PAGE_TITLE = config.getString("HOME_PAGE_TITLE");
     private static final String LOGIN_PAGE_TITLE = config.getString("LOGIN_PAGE_TITLE");
 
-    @Before
-    public void setUp() {
-        this.driver = DriverFactory.getDriver();
-        DriverFactory.setDriverTimeouts(driver);
-
-        homePage = new HomePage(driver).
-                navigateToHomePageURL()
-                .and()
-                .acceptAllCookies();
-
-        navigationSection = new NavigationSection(driver);
-        pageActions = new PageActions(driver);
-    }
-
-
-    @Given("User is looking at tracking id sectionafaf")
-    public void user_is_looking_at_tracking_id_sectionadfadfasf() {
+    @Given("User is looking at navigation menu section")
+    public void user_is_looking_at_navigation_menu_section() {
         driver = SetupCucumber.getDriver();
 
         homePage = new HomePage(driver).
@@ -59,11 +39,6 @@ public class NavigationSectionSteps {
 
         navigationSection = new NavigationSection(driver);
         pageActions = new PageActions(driver);
-    }
-
-    @Given("User is looking at navigation menu section")
-    public void user_is_looking_at_navigation_menu_section() {
-        homePage.navigateToHomePageURL();
     }
 
     @When("User clicks on the FedEx home page button")
