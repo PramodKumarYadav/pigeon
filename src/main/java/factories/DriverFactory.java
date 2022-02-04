@@ -95,6 +95,6 @@ public class DriverFactory {
     }
 
     public static void setDriverTimeouts(WebDriver driver) {
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(180));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
     }
 }
