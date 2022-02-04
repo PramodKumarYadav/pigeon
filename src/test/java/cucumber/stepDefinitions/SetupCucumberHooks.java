@@ -1,4 +1,4 @@
-package cucumber.hooks;
+package cucumber.stepDefinitions;
 
 import factories.DriverFactory;
 import io.cucumber.java.After;

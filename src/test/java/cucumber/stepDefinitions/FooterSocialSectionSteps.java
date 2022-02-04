@@ -1,4 +1,4 @@
-package cucumber.hooks;
+package cucumber.stepDefinitions;
 
 import actions.PageActions;
 import com.typesafe.config.Config;

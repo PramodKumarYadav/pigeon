@@ -1,4 +1,4 @@
-package cucumber.hooks;
+package cucumber.stepDefinitions;
 
 import com.typesafe.config.Config;
 import config.EnvFactory;

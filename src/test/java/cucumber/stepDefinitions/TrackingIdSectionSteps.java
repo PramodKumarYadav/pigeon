@@ -1,4 +1,4 @@
-package cucumber.hooks;
+package cucumber.stepDefinitions;
 
 import fedex.commonSections.TrackingIdSection;
 import fedex.pages.HomePage;
