@@ -11,7 +11,7 @@ It will then look like below snapshot.`
 Key tools used in pigeon are:
 - [x] **ElasticSearch and Kibana** (for real time test monitoring and reporting)
 - [x] **Github actions** (for continuous integration)
-- [ ] **Docker** (for dockerizing the project and running it in a docker selenium grid)
+- [x] **Docker** (for dockerizing the project and running it in a docker selenium grid)
 - [x] **Remote execution on docker selenium grid** (example of remote execution)
 - [x] **Selenium**  (library for browser automation)
 - [x] **Java** (as the core programming language)
@@ -21,7 +21,7 @@ Key tools used in pigeon are:
 - [x] **Surefire** (for secondary xml reports in CI)
 - [x] **Surefire Site plugin** (for secondary html reports in CI)
 - [x] **Github** (for version control)
-- [ ] **Faker library** (for generating random test data for different locales - germany, france, netherlands, english)
+- [x] **Faker library** (for generating random test data for different locales - germany, france, netherlands, english)
 
 ### Exceptions
 An exception that I took liberty to deviate from the given assignment was not using **Cucumber**. 
@@ -62,8 +62,13 @@ The reasons for not usig cucumber are as below:
 
 ## Getting started
 
+## To run tests from docker
+### Open powershell terminal or any other terminal
+-  `cd D:\pigeon\`
+-  `docker image build -t pigeon . -f Dockerfile`
+-  `docker container run pigeon`
+    
 ## To run tests on localhost
-
 ### via Intellij or from Maven
 - To include any specific tests, (say to run only smoke tests in CI), run as:
     - `mvn clean -Dgroups=smokeTest test`
