@@ -23,19 +23,25 @@ Key tools used in pigeon are:
 - [x] **Github** (for version control)
 - [x] **Faker library** (for generating random test data for different locales - germany, france, netherlands, english)
 
-### Exceptions
-An exception that I took liberty to deviate from the given assignment was not using **Cucumber**. 
-The reasons for not usig cucumber are as below: 
+### Exceptions (earlier - not anymore an exception)
+Originally after informing/asking `Mark Vieillevoye` on email to allow to deviate from using Cucumber, I created the 
+original framework using Selenium - Junit5. However, when mark said that it is desired to use Cucumber for this assignment, 
+I also created tests using Selenium - Cucumber. That is the reason, why you will see two implementations for the same 
+underlying tests, done using both Cucumber and Junit5. My original reasons for not using Cucumber were below:
   - **Impact on execution times**: The maximum level of parallel execution that can be achieved in cucumber is at a feature file 
     level. This limits the total execution time to tool choice rather than an infrastructure limitation. By avoiding 
     cucumber, we can get faster build times in CI by upgrading to a powerful infrastructure - something that we cannot 
     do with cucumber, even if we have high infrastructure. Cucumbers feature-files are the slowest moving parts. However,
-    with Junit5 the slowest moving part is a test case. 
-  - **Impact on maintenance and design**: Cucumber providing a sugar syntax which comes at the cost of restricted flexibility w.r.t. 
-    how you can make the best use of Javas object-oriented programming and underlying libraries that it uses (such as junit5). 
-    We will see how we can achieve a high level of BDD (Behaviour driven development - tests), by using the best 
-    object-oriented design practices, without using cucumber.
-
+    with Junit5 the slowest moving part is a test case.
+- **Impact on maintenance and design**: Cucumber breaks the atomic nature of a test to provide "arrange/act and assert" 
+    and rather puts that in the feature files. This takes all the context of items in the classes away and puts it into 
+  feature files. Simple things like extending classes are not allowed in step definitions, and you cannot make efficient 
+  use of beforeEach and afterEach, beforeAll, afterAll annotations. We now rather deal with class level before and 
+  after methods. The way hooks are used, are not intuitive and in general reducing every line, into a step method is 
+  counter productive. The sugar syntax that Cuucmber provides, is all eventually coming from underlying libraries (such 
+  as Junit) and once you know how to make good use of it, you can write equally readable tests with much less boiler 
+  plate code and without losing any context. 
+  
 ## Key framework features
 - [x] **All tests to be atomic and independent**.
     - Reason: When we run our tests in parallel, we do not want the result of one test affect another one.
